@@ -6,34 +6,40 @@ class ListNode:
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         s1 = ""
-        while l1 != None:
+        while l1:
             s1 += l1.val
             l1 = l1.next
         s2 = ""
-        while l2 != None:
+        while l2:
             s2 += l2.val
             l2 = l2.next
-
-        sum = int(s1[::-1]) + int(s2[::-1])
-        mSum = str(sum)[::-1]
-        print(mSum)
-        # for i in range(0,mSum):
-        #     if i == len(sum) -1 :
-        #         pass
-        #     else:
-        #         n1 = ListNode(num, )
+        rSum = str(int(s1[::-1]) + int(s2[::-1]))[::-1]
+        return createLinkedList(rSum)
 
 
-n1 = ListNode('3')
-n2 = ListNode('4', n1)
-n3 = ListNode('2', n2)
+# n1 = ListNode('3')
+# n2 = ListNode('4', n1)
+# n3 = ListNode('2', n2)
 
-n4 = ListNode('4')
-n5 = ListNode('6', n4)
-n6 = ListNode('5', n5)
+# n4 = ListNode('4')
+# n5 = ListNode('6', n4)
+# n6 = ListNode('5', n5)
 
+def createLinkedList (str):
+    if len(str) == 1:
+        return ListNode(str)
+    else:
+        return ListNode(str[0], createLinkedList(str[1:]))
+
+
+l1 = createLinkedList('243')
+l2 = createLinkedList('564')
 s1 = Solution()
-s1.addTwoNumbers(n3, n6)
+ans = s1.addTwoNumbers(l1, l2)
+
+while ans:
+    print(ans.val)
+    ans = ans.next
 
 # def solution(l1: ListNode):
 #     head = l1
